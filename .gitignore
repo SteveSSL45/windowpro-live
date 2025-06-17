@@ -1,1 +1,18 @@
+# Node modules and environment
+node_modules/
+.env
+.vscode/
+.DS_Store
+
+# Build output
+/build
+/dist
+
+# System files
+*.log
+
+# Vercel
 .vercel
+
+
+
