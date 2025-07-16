@@ -37,15 +37,17 @@ export default function Visualizer() {
   };
 
   const updateHistory = (newElements) => {
-    setHistory([...history, elements]);
+    setHistory((h) => [...h, elements]);
     setElements(newElements);
     setFuture([]);
   };
 
   const handleBackgroundChange = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
     const reader = new FileReader();
     reader.onload = () => setBackground(reader.result);
-    reader.readAsDataURL(e.target.files[0]);
+    reader.readAsDataURL(file);
   };
 
   const handleExport = () => {
@@ -92,7 +94,7 @@ export default function Visualizer() {
     const updated = elements.map((el) =>
       el.id === id ? { ...el, ...newProps } : el
     );
-    setElements(updated);
+    updateHistory(updated);
   };
 
   const removeElement = (id) => {
